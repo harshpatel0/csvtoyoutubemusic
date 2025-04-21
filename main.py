@@ -2,6 +2,7 @@ import chardet
 import csv
 import os
 import time
+import sys
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -94,6 +95,7 @@ class App():
     print("Reverting to Home Screen")
     driver.get("https://music.youtube.com")
 
+
   def start(self):
       for i, music in enumerate(music_list):
         print(f"{i+1}/{len(music_list)}. Attempting to add {music} to liked songs:")
@@ -135,4 +137,14 @@ class App():
           driver.get("https://music.youtube.com")
           continue
 
+      self.completed()
+        
+  def completed(self):
+     print("\n\n")
+     print("Transfer completed, some songs may have not been transferred successfully, check the above logs to see what failed")
+     input("Press ENTER to quit app")
+     driver.quit()
+     exit()
+
+     
 App()
