@@ -15,3 +15,14 @@ Automatically add YouTube Music Music through a CSV file
 - Once parsed, you will be presented with a list of the songs, the songs are arranged from top to bottom of the CSV file.
 - Press ENTER to contimue and press ENTER again after confirming your Chrome sizing and press ENTER, the operation will start.
 - You will be provided with a log on your console.
+
+# Notice
+This app will interact with your existing default Chrome profile, this is because Google does not allow sign ins from browsers running test software.
+The app will only interact with YouTube Music and that's it, you may confirm the code to see for yourself. If you do not trust the binaries provided, the source code will also allow you to use it.
+
+## Running from Source
+The app was made with Python 3.12.3.
+
+- Download the source code
+- Install requirements `pip install requirements.txt`
+- Run main.py
