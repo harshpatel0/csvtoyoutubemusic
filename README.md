@@ -16,6 +16,10 @@ Automatically add YouTube Music Music through a CSV file
 - Press ENTER to contimue and press ENTER again after confirming your Chrome sizing and press ENTER, the operation will start.
 - You will be provided with a log on your console.
 
+# Issues
+If a song is already liked but not detected by the script, usually because the position of the **Remove from Liked Songs** button moves, it will attempt to add to your Pinned / Speed Dial instead
+When using the script, memory is not cleared, leading to high memory usage, Chrome will shut down the site when RAM usage reaches 4GB. This will be fixed soon.
+
 # Notice
 This app will interact with your existing default Chrome profile, this is because Google does not allow sign ins from browsers running test software.
 The app will only interact with YouTube Music and that's it, you may confirm the code to see for yourself. If you do not trust the binaries provided, the source code will also allow you to use it.
