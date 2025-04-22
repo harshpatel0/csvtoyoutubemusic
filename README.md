@@ -17,7 +17,7 @@ Automatically add YouTube Music Music through a CSV file
 - You will be provided with a log on your console.
 
 # Issues
-If a song is already liked but not detected by the script, usually because the position of the **Remove from Liked Songs** button moves, it will attempt to add to your Pinned / Speed Dial instead
+If a song is already liked but not detected by the script, usually because the position of the **Remove from Liked Songs** button moves, it will attempt to add to your Pinned / Speed Dial instead. This occurs for some songs only.
 When using the script, memory is not cleared, leading to high memory usage, Chrome will shut down the site when RAM usage reaches 4GB. This will be fixed soon.
 
 # Notice
