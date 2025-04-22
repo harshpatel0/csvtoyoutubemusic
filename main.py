@@ -49,12 +49,17 @@ def parse_csv(file_path):
     for row in reader:
       music_list.append(" - ".join(row))
     
-    music_list.reverse()
+    # music_list.reverse()
     for i, music in enumerate(music_list):
        print(f"{i}. {music}")
 
 class App():
   csv_file_path = ""
+  reset_threshold = 200
+  reverse_music_list = True
+  # The script will automatically reset once this number of songs has reached. This is to mitigate the memory issue
+
+  count_of_processed_music = 0
 
   def __init__(self):
     self.main()
@@ -67,7 +72,7 @@ class App():
 
       self.import_csv()
       
-      input("Press ENTER to start, then maximize the Managed Chrome Window. You are free to minimize it after maximizing it.\nYou have 10 seconds to do so.")
+      input("You will now need to maximize the Chrome Window, then switch over to the Terminal and Press ENTER when ready.\nThis is so the search box is visible. If it is not visible even after maximizing, zoom out and return to the terminal.")
       self.init()
       clear_screen()
       self.start()
@@ -78,15 +83,23 @@ class App():
     self.csv_file_path = input("File: ")
     
     clear_screen()
+
+    done = False
     
     print("Importing File")
     parse_csv(self.csv_file_path)
     
-    print("Your music has been imported, you can check to see if all your songs have been imported.")
-    print(f"Total Count: {len(music_list)}")
-    print("Press ENTER to confirm and continue")
-    input()
-    
+    while done == False:
+      print("Your music has been imported, you can check to see if all your songs have been imported.")
+      print(f"Total Count: {len(music_list)}")
+      print("Press ENTER to confirm and continue, or type reverse to reverse the list.")
+      if input().lower() == "reverse":
+        music_list.reverse()
+        for i, music in enumerate(music_list):
+          print(f"{i}. {music}")
+      else: 
+         done = True
+
     return None
   
   def init(self):
@@ -95,9 +108,19 @@ class App():
     print("Reverting to Home Screen")
     driver.get("https://music.youtube.com")
 
+  def soft_reset(self):
+     print("\nAttempting a soft reset to mitigate memory issues")
+     self.count_of_processed_music = 0
+     print("Reloading page")
+     driver.get("https://music.youtube.com")
+     print("Continuing\n")
+     
 
   def start(self):
       for i, music in enumerate(music_list):
+        if self.count_of_processed_music == self.reset_threshold:
+           self.soft_reset()
+        
         print(f"{i+1}/{len(music_list)}. Attempting to add {music} to liked songs:")
         print(f"    Searching for {music}")
         try: 
@@ -129,6 +152,7 @@ class App():
           driver.find_element(By.XPATH, ELEMENT_SAVE_TEXT).click()
           print(f"    Added {music} to Liked Songs")
           print("\n")
+          self.count_of_processed_music = self.count_of_processed_music + 1
 
 
         except Exception as e:
