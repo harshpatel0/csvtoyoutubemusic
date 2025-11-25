@@ -16,7 +16,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 music_list = []
 options = webdriver.ChromeOptions()
-options.add_argument(r'--user-data-dir=C:\\Users\\harshpatel\\AppData\\Local\\Google\\Chrome\\User Data')
+
+options.add_argument(r'--user-data-dir=C:\\Users\\{username}\\AppData\\Local\\Google\\Chrome\\User Data')
 options.add_argument("--profile-directory=Default")
 
 driver = webdriver.Chrome(options=options)
@@ -171,4 +172,5 @@ class App():
      exit()
 
      
+
 App()
